@@ -9,7 +9,7 @@ name="cyclone_sse"
 # pidfile: /var/run/$prog.pid
 # description: $prog
 
-prog="$(basename $0)"
+prog="cyclone_sse"
 
 # Source function library.
 . /etc/rc.d/init.d/functions
