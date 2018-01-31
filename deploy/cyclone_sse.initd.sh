@@ -21,6 +21,7 @@ lockfile="/var/lock/subsys/${prog}"
 uid=`id -u ${name}`
 gid=`id -g ${name}`
 cyclone_sse_options=`cat /etc/${name}/cyclone_sse.conf`
+open_files_max=49152
 
 export PYTHONPATH=/opt/cyclone_sse/src
 opts="/opt/cyclone_sse/env/bin/twistd --uid=${uid} --gid=${gid} --pidfile=${pidfile} --logfile=/var/log/${prog}.log cyclone-sse ${cyclone_sse_options}"
@@ -30,6 +31,7 @@ RETVAL=0
 
 start() {
         echo -n $"Starting $prog: "
+        ulimit -n ${open_files_max}
         ${opts}
         RETVAL=$?
         echo
