@@ -31,8 +31,9 @@ fi
 
 
 %postun
-/usr/sbin/userdel %{name}
-
+if [ $1 -eq 0 ]; then
+    /usr/sbin/userdel %{name}
+fi
 
 %build
 mkdir -p %{name}
@@ -63,6 +64,8 @@ mv %{name} %{buildroot}%{__prefix}/
 # configs
 mkdir -p %{buildroot}%{_sysconfdir}/%{name}
 %{__install} -p -D -m 0755 %{buildroot}%{__prefix}/%{name}/src/extras/cyclone-sse.conf %{buildroot}%{_sysconfdir}/%{name}/cyclone_sse.conf
+find %{buildroot}%{__prefix}/%{name} -type f -name "*.py[co]" -delete
+prelink -u %{buildroot}%{__prefix}/%{name}/env/bin/python2.7
 
 
 # bin
