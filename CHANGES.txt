@@ -1,6 +1,10 @@
 CYCLONE SSE CHANGES
 ===================
 
+0.7.6
+-----
+* fixed buffering problem with nginx
+
 0.7.5
 -----
 * ability to publish into multiple channels for HTTP publish handler

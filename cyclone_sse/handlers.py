@@ -35,6 +35,7 @@ class ExtendedSSEHandler(SSEHandler):
         self.set_header("Cache-Control", "no-cache")
         self.set_header("Connection", "keep-alive")
         self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("X-Accel-Buffering", "no")  # prevents nginx from buffering response
         self.request.connection.setRawMode()
         self.notifyFinish().addCallback(self.on_connection_closed)
         try:
