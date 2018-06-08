@@ -1,3 +1,4 @@
+setuptools>=18.5
 Twisted>=12.3.0,<14.0
 cyclone==1.1
 txAMQP==0.6.1
