@@ -43,12 +43,13 @@ rm -rf %{name}/src/.git*
 find %{name}/src/ -type f -name "*.py[co]" -delete
 
 virtualenv --no-site-packages %{name}/env
+./%{name}/env/bin/pip install --index-url=https://pypi.python.org/simple/ --upgrade setuptools
+./%{name}/env/bin/pip install --index-url=https://pypi.python.org/simple/ --upgrade pip
 ./%{name}/env/bin/pip install --index-url=https://pypi.python.org/simple/ -r %{name}/src/requirements.txt --upgrade
 virtualenv --relocatable %{name}/env
 
 # replace builddir path
 find %{name}/env/ -type f -exec sed -i "s:%{_builddir}:%{__prefix}:" {} \;
-
 
 %install
 # rpmbuild/BUILD
